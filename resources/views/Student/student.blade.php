@@ -22,12 +22,13 @@
     <div class="l-navbar" id="nav-bar">
         <nav class="nav">
             <div>
-                <a href="index.html" class="nav_logo">
+                <a href="{{ route('home')}}" class="nav_logo">
                     <i class='bx bx-layer nav_logo-icon'></i>
-                    <span class="nav_logo-name">BBBootstrap</span>
+                    <span class="nav_logo-name">BBBootstrap
+                    </span>
                 </a>
                 <div class="nav_list">
-                    <a href="index.html" class="nav_link">
+                    <a href="{{ route('home')}}" class="nav_link">
                         <i class='bx bx-grid-alt nav_icon'></i>
                         <span class="nav_name">Dashboard</span>
                     </a>
@@ -37,12 +38,10 @@
                         <span class="nav_name">Classrooms</span>
                     </a>
                     <div class="collapse" id="classroom">
-                        <a href="classroom.html" class="nav_link">Show Classrooms</a>
-                        <a href="addClassroom.html" class="nav_link">Add Classrooms</a>
-                        <a href="addSubjectToClassroom.html" class="nav_link" title="Add Subjects To Classrooms">Add
-                            Subjects To Classrooms</a>
-                        <a href="addStudentToClassroom.html" class="nav_link" title="Add Students To Classrooms">Add
-                            Students To Classrooms</a>
+                        <a href="{{ route('showClassroom')}}" class="nav_link">Show Classrooms</a>
+                        <a href="{{ route('addClassroom')}}" class="nav_link">Add Classrooms</a>
+                        <a href="{{ route('addSubjectClassroom')}}" class="nav_link" title="Add Subjects To Classrooms">Add Subjects To Classrooms</a>
+                        <a href="{{ route('addStudentClassroom')}}" class="nav_link" title="Add Students To Classrooms">Add Students To Classrooms</a>
                     </div>
                     <a data-bs-toggle="collapse" href="#Students" role="button" aria-expanded="false"
                         aria-controls="Students" class="nav_link active">
@@ -51,7 +50,7 @@
                     </a>
                     <div class="collapse" id="Students">
                         <a href="{{ route('showStudent')}}" class="nav_link">Show Students</a>
-                        <a href="addStudent.html" class="nav_link">Add Students</a>
+                        <a href="{{ route('addStudent')}}" class="nav_link">Add Students</a>
                     </div>
                     <a data-bs-toggle="collapse" href="#teacher" role="button" aria-expanded="false"
                         aria-controls="teacher" class="nav_link">
@@ -59,8 +58,8 @@
                         <span class="nav_name">Teachers</span>
                     </a>
                     <div class="collapse" id="teacher">
-                        <a href="teacher.html" class="nav_link">Show Teachers</a>
-                        <a href="addTeacher.html" class="nav_link">Add Teachers</a>
+                        <a href="{{ route('showTeacher')}}" class="nav_link">Show Teachers</a>
+                        <a href="{{ route('addTeacher')}}" class="nav_link">Add Teachers</a>
                     </div>
                     <a data-bs-toggle="collapse" href="#subject" role="button" aria-expanded="false"
                         aria-controls="subject" class="nav_link">
@@ -68,11 +67,11 @@
                         <span class="nav_name">Subjects</span>
                     </a>
                     <div class="collapse" id="subject">
-                        <a href="subject.html" class="nav_link">Show Subjects</a>
-                        <a href="addSubject.html" class="nav_link">Add Subjects</a>
+                        <a href="{{ route('showSubject')}}" class="nav_link">Show Subjects</a>
+                        <a href="{{ route('addSubject')}}" class="nav_link">Add Subjects</a>
                     </div>
                 </div>
-            </div> <a href="#" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span
+            </div> <a href="{{ route('logout')}}" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span
                     class="nav_name">SignOut</span> </a>
         </nav>
     </div>
