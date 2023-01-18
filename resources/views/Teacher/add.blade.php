@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{ asset('build/assets/app-67dcdfd2.css')}}" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/design.css')}}" type="text/css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-    <title>Student | Edit</title>
+    <title>Teacher | Add</title>
 </head>
     <body id="body-pd" class="bg-white">
         <header class="header" id="header">
@@ -39,7 +39,7 @@
                             <a href="{{ route('addSubjectClassroom')}}" class="nav_link" title="Add Subjects To Classrooms">Add Subjects To Classrooms</a>
                         </div>
                         <a data-bs-toggle="collapse" href="#Students" role="button" aria-expanded="false"
-                            aria-controls="Students" class="nav_link active">
+                            aria-controls="Students" class="nav_link">
                             <i class='bx bxs-graduation nav_icon'></i>
                             <span class="nav_name">Students</span>
                         </a>
@@ -48,7 +48,7 @@
                             <a href="{{ route('addStudent')}}" class="nav_link">Add Students</a>
                         </div>
                         <a data-bs-toggle="collapse" href="#teacher" role="button" aria-expanded="false"
-                            aria-controls="teacher" class="nav_link">
+                            aria-controls="teacher" class="nav_link active">
                             <i class='bx bx-user nav_icon'></i>
                             <span class="nav_name">Teachers</span>
                         </a>
@@ -72,55 +72,81 @@
         </div>
         <!--Container Main start-->
         <div class="bg-white p-5">
-            <h4 class="text-center mb-5">Edit Student</h4>
+            <h4 class="text-center mb-5">Add Teacher</h4>
             <div class="d-flex justify-content-center align-items-center">
-                <form method="post" action="{{route('updateStudent', $student->id)}}" class="w-25">
+                <form method="post" action="{{ route('storeTeacher')}}" class="w-25">
                     @csrf
                     <div class="mb-3">
                         <label for="firstname" class="form-label">First Name</label>
-                        <input type="text" name="firstname" id="firstname" class="form-control" value="{{$student->firstname}}">
+                        <input type="text" name="firstname" id="firstname" class="form-control @error('firstname')
+                            is-invalid
+                        @enderror">
+                        @error('firstname')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="lastname" class="form-label">Last Name</label>
-                        <input type="text" name="lastname" id="lastname" class="form-control" value="{{$student->lastname}}">
+                        <input type="text" name="lastname" id="lastname" class="form-control @error('lastname')
+                            is-invalid
+                        @enderror">
+                        @error('lastname')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="dateOfBirthday" class="form-label">Date Of Birthday</label>
-                        <input type="date" name="dateOfBirthday" id="dateOfBirthday" class="form-control" value="{{$student->date_of_birthday}}">
+                        <input type="date" name="dateOfBirthday" id="dateOfBirthday" class="form-control @error('dateOfBirthday')
+                            is-invalid
+                        @enderror">
+                        @error('dateOfBirthday')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" name="email" id="email" class="form-control" value="{{$student->email}}">
+                        <input type="email" name="email" id="email" class="form-control @error('email')
+                            is-invalid
+                        @enderror">
+                        @error('email')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="phone" class="form-label">Phone</label>
-                        <input type="tel" name="phone" id="phone" class="form-control" value="{{$student->phone}}">
+                        <input type="tel" name="phone" id="phone" class="form-control @error('phone')
+                            is-invalid
+                        @enderror">
+                        @error('phone')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="address" class="form-label">Address</label>
-                        <input type="text" name="address" id="address" class="form-control" value="{{$student->address}}">
+                        <input type="text" name="address" id="address" class="form-control @error('address')
+                            is-invalid
+                        @enderror">
+                        @error('address')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="gender" class="form-label">Gender</label>
-                        <input type="text" name="gender" id="gender" class="form-control" value="{{$student->gender}}">
+                        <input type="text" name="gender" id="gender" class="form-control @error('gender')
+                            is-invalid
+                        @enderror">
+                        @error('gender')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="registered" class="form-label">Registered</label>
-                        <input type="date" name="registered" id="registered" class="form-control" value="{{$student->registered}}">
-                    </div>
-                    <div class="mb-3">
-                        <label for="parentName" class="form-label">Parent Name</label>
-                        <input type="tel" name="parentName" id="parentName" class="form-control" value="{{$student->parent_name}}">
-                    </div>
-                    <div class="mb-3">
-                        <label for="classroom" class="form-label">Class Room</label>
-                        <select name="classroom" id="classroom"
-                            class="form-select">
-                            <option value="{{ $student->classroom_id }}">Select Classroom</option>
-                            @foreach ($classroom as $grade)
-                                <option value="{{ $grade->id }}">{{ $grade->grade }}</option>
-                            @endforeach
-                        </select>
+                        <input type="date" name="registered" id="registered" class="form-control @error('registered')
+                            is-invalid
+                        @enderror">
+                        @error('registered')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <button type="submit" class="btn btn-dark">Save</button>

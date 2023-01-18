@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="{{ asset('css/design.css')}}" type="text/css">
     <link rel="stylesheet" href="{{ asset('build/assets/app-67dcdfd2.css')}}">  
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
     <title>Student | Show</title>
 </head>
 
@@ -41,7 +43,6 @@
                         <a href="{{ route('showClassroom')}}" class="nav_link">Show Classrooms</a>
                         <a href="{{ route('addClassroom')}}" class="nav_link">Add Classrooms</a>
                         <a href="{{ route('addSubjectClassroom')}}" class="nav_link" title="Add Subjects To Classrooms">Add Subjects To Classrooms</a>
-                        <a href="{{ route('addStudentClassroom')}}" class="nav_link" title="Add Students To Classrooms">Add Students To Classrooms</a>
                     </div>
                     <a data-bs-toggle="collapse" href="#Students" role="button" aria-expanded="false"
                         aria-controls="Students" class="nav_link active">
@@ -77,6 +78,12 @@
     </div>
     <!--Container Main start-->
     <div class="bg-white mt-5 p-5">
+        @if ($msg = Session::get('alert'))
+            <div class="alert alert-success alert-dismissible fade show w-100" role="alert">
+                <strong>{{$msg}}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
         <h4 class="text-center">Show Students</h4>
         <div class="d-flex justify-content-center">
             <table class="table table-striped">
@@ -92,6 +99,7 @@
                         <th scope="col">Gender</th>
                         <th scope="col">Registered</th>
                         <th scope="col">Parent Name</th>
+                        <th scope="col">Class Room</th>
                         <th scope="col">Edit/Delete</th>
                     </tr>
                 </thead>
@@ -109,9 +117,10 @@
                             <td>{{$stu->gender}}</td>
                             <td>{{$stu->registered}}</td>
                             <td>{{$stu->parent_name}}</td>
+                            <td>{{$stu->grade}}</td>
                             <td>
                                 <a href="{{ route('editStudent',$stu->id) }}" class="text-warning"><i class="bx bx-edit h4"></i></a>
-                                <a href="" class="text-danger"><i class="bx bx-trash h4"></i></a>
+                                <a href=" {{ route('deleteStudent', $stu->id)}} " class="text-danger"><i class="bx bx-trash h4"></i></a>
                             </td>
                         </tr>
                     </tbody>

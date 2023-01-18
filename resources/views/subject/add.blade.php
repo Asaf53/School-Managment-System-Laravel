@@ -5,12 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- Scripts -->
-
+    <link rel="stylesheet" href="{{ asset('build/assets/app-67dcdfd2.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/design.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('build/assets/app-67dcdfd2.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-    <title>Student | Show</title>
+    <title>Subject | Add</title>
 </head>
 
 <body id="body-pd" class="bg-white">
@@ -28,7 +26,7 @@
                     </span>
                 </a>
                 <div class="nav_list">
-                    <a href="{{ route('home') }}" class="nav_link active">
+                    <a href="{{ route('home') }}" class="nav_link">
                         <i class='bx bx-grid-alt nav_icon'></i>
                         <span class="nav_name">Dashboard</span>
                     </a>
@@ -62,7 +60,7 @@
                         <a href="{{ route('addTeacher') }}" class="nav_link">Add Teachers</a>
                     </div>
                     <a data-bs-toggle="collapse" href="#subject" role="button" aria-expanded="false"
-                        aria-controls="subject" class="nav_link">
+                        aria-controls="subject" class="nav_link active">
                         <i class='bx bx-book-bookmark nav_icon'></i>
                         <span class="nav_name">Subjects</span>
                     </a>
@@ -71,78 +69,62 @@
                         <a href="{{ route('addSubject') }}" class="nav_link">Add Subjects</a>
                     </div>
                 </div>
-            </div> 
-            <a href="{{ route('logout') }}" class="nav_link"> 
-                <i class='bx bx-log-out nav_icon'></i> 
-                <span class="nav_name">Log Out</span> 
-            </a>
+            </div> <a href="{{ route('logout') }}" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span
+                    class="nav_name">SignOut</span> </a>
         </nav>
     </div>
-
     <!--Container Main start-->
     <div class="bg-white p-5">
-        <div class="container mt-5 mb-3">
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="card text-bg-dark">
-                        <img src="{{ asset('image/finish.png') }}" class="card-img" alt="...">
-                        <div
-                            class="card-img-overlay text-white d-flex justify-content-between align-items-center mb-5">
-                            <i class='bx bxs-graduation nav_icon h1 mt-3'></i>
-                            <div class="d-block">
-                                <h5 class="card-title fw-bold text-end mb-0">{{ $student }}</h5>
-                                <h3 class="card-text fw-light text-end">Students</h3>
-                            </div>
-                        </div>
-                    </div>
+        <h4 class="text-center mb-5">Add Subject</h4>
+        <div class="d-flex justify-content-center align-items-center">
+            <form method="post" action="{{ route('storeSubject') }}" class="w-25">
+                @csrf
+                <div class="mb-3">
+                    <label for="subjectName" class="form-label">Subject Name</label>
+                    <input type="text" name="subjectName" id="subjectName"
+                        class="form-control @error('subjectName')
+                            is-invalid
+                        @enderror">
+                    @error('subjectName')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 </div>
-                <div class="col-md-3">
-                    <div class="card text-bg-dark">
-                        <img src="{{ asset('image/finish2.png') }}" class="card-img" alt="...">
-                        <div
-                            class="card-img-overlay text-white d-flex justify-content-between align-items-center mb-5">
-                            <i class='bx bxs-user nav_icon h1 mt-3'></i>
-                            <div class="d-block">
-                                <h5 class="card-title fw-bold text-end mb-0">{{ $teacher }}</h5>
-                                <h3 class="card-text fw-light text-end">Teachers</h3>
-                            </div>
-                        </div>
-                    </div>
+                <div class="mb-3">
+                    <label for="teacher" class="form-label">Teacher</label>
+                    <select name="teacher" id="teacher" class="form-select 
+                        @error('teacher')
+                            is-invalid
+                        @enderror">
+                        <option selected>Select Teacher</option>
+                        @foreach ($teachers as $teacher)
+                            <option value="{{ $teacher->id }}">{{ $teacher->fullname }}</option>
+                        @endforeach
+                    </select>
+                    @error('teacher')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 </div>
-                <div class="col-md-3">
-                    <div class="card text-bg-dark">
-                        <img src="{{ asset('image/finish3.png') }}" class="card-img" alt="...">
-                        <div
-                            class="card-img-overlay text-white d-flex justify-content-between align-items-center mb-5">
-                            <i class='bx bxs-school nav_icon h1 mt-3'></i>
-                            <div class="d-block">
-                                <h5 class="card-title fw-bold text-end mb-0">{{ $classroom }}</h5>
-                                <h3 class="card-text fw-light text-end">Classrooms</h3>
-                            </div>
-                        </div>
-                    </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <input type="text" name="description" id="description"
+                        class="form-control @error('description')
+                            is-invalid
+                        @enderror">
+                    @error('description')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 </div>
-                <div class="col-md-3">
-                    <div class="card text-bg-dark">
-                        <img src="{{ asset('image/finish4.png') }}" class="card-img" alt="...">
-                        <div
-                            class="card-img-overlay text-white d-flex justify-content-between align-items-center mb-5">
-                            <i class='bx bxs-book-bookmark nav_icon h1 mt-3'></i>
-                            <div class="d-block">
-                                <h5 class="card-title fw-bold text-end mb-0">{{ $subject }}</h5>
-                                <h3 class="card-text fw-light text-end">Subjects</h3>
-                            </div>
-                        </div>
-                    </div>
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-dark">Save</button>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
     <!--Container Main end-->
 
-    <script src="{{ asset('js/sidebar.js') }}"></script>
+
     <script src="{{ asset('build/assets/app-7757a2cf.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="{{ asset('js/sidebar.js') }}"></script>
 </body>
 
 </html>

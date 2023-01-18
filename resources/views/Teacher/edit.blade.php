@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{ asset('build/assets/app-67dcdfd2.css')}}" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/design.css')}}" type="text/css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-    <title>Student | Edit</title>
+    <title>Teacher | Edit</title>
 </head>
     <body id="body-pd" class="bg-white">
         <header class="header" id="header">
@@ -37,7 +37,6 @@
                             <a href="{{ route('showClassroom')}}" class="nav_link">Show Classrooms</a>
                             <a href="{{ route('addClassroom')}}" class="nav_link">Add Classrooms</a>
                             <a href="{{ route('addSubjectClassroom')}}" class="nav_link" title="Add Subjects To Classrooms">Add Subjects To Classrooms</a>
-                            <a href="{{ route('addStudentClassroom')}}" class="nav_link" title="Add Students To Classrooms">Add Students To Classrooms</a>
                         </div>
                         <a data-bs-toggle="collapse" href="#Students" role="button" aria-expanded="false"
                             aria-controls="Students" class="nav_link">
@@ -75,39 +74,79 @@
         <div class="bg-white p-5">
             <h4 class="text-center mb-5">Edit Teacher</h4>
             <div class="d-flex justify-content-center align-items-center">
-                <form method="post" action="{{route('updateTeacher')}}" class="w-25">
+                <form method="post" action="{{route('updateTeacher', $teachers->id)}}" class="w-25">
                     @csrf
                     <div class="mb-3">
                         <label for="firstname" class="form-label">First Name</label>
-                        <input type="text" name="firstname" id="firstname" class="form-control" value="{{$teachers->firstname}}">
+                        <input type="text" name="firstname" id="firstname" class="form-control @error('firstname')
+                        is-invalid
+                    @enderror" value="{{$teachers->firstname}}">
+                        @error('firstname')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="lastname" class="form-label">Last Name</label>
-                        <input type="text" name="lastname" id="lastname" class="form-control" value="{{$teachers->lastname}}">
+                        <input type="text" name="lastname" id="lastname" class="form-control @error('lastname')
+                        is-invalid
+                    @enderror" value="{{$teachers->lastname}}">
+                        @error('lastname')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="dateOfBirthday" class="form-label">Date Of Birthday</label>
-                        <input type="date" name="dateOfBirthday" id="dateOfBirthday" class="form-control" value="{{$teachers->date_of_birthday}}">
+                        <input type="date" name="dateOfBirthday" id="dateOfBirthday" class="form-control @error('dateOfBirthday')
+                        is-invalid
+                    @enderror" value="{{$teachers->date_of_birthday}}">
+                        @error('dateOfBirthday')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" name="email" id="email" class="form-control" value="{{$teachers->email}}">
+                        <input type="email" name="email" id="email" class="form-control @error('email')
+                        is-invalid
+                    @enderror" value="{{$teachers->email}}">
+                        @error('email')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="phone" class="form-label">Phone</label>
-                        <input type="tel" name="phone" id="phone" class="form-control" value="{{$teachers->phone}}">
+                        <input type="tel" name="phone" id="phone" class="form-control @error('phone')
+                        is-invalid
+                    @enderror" value="{{$teachers->phone}}">
+                        @error('phone')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="address" class="form-label">Address</label>
-                        <input type="text" name="address" id="address" class="form-control" value="{{$teachers->address}}">
+                        <input type="text" name="address" id="address" class="form-control @error('address')
+                        is-invalid
+                    @enderror" value="{{$teachers->address}}">
+                        @error('address')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="gender" class="form-label">Gender</label>
-                        <input type="text" name="gender" id="gender" class="form-control" value="{{$teachers->gender}}">
+                        <input type="text" name="gender" id="gender" class="form-control @error('gender')
+                        is-invalid
+                    @enderror" value="{{$teachers->gender}}">
+                        @error('gender')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="registered" class="form-label">Registered</label>
-                        <input type="datetime" name="registered" id="registered" class="form-control" value="{{$teachers->registered}}">
+                        <input type="date" name="registered" id="registered" class="form-control @error('registered')
+                        is-invalid
+                    @enderror" value="{{$teachers->registered}}">
+                    @error('registered')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <button type="submit" class="btn btn-dark">Save</button>
