@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->foreignId('teacher_id')->constrained()->onDelete('cascade');
             $table->text('description');
+            $table->timestamps();
         });
     }
 

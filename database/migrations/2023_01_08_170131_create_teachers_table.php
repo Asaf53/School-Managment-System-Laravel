@@ -22,7 +22,8 @@ return new class extends Migration
             $table->integer('phone');
             $table->string('address');
             $table->string('gender');
-            $table->timestamp('registered')->useCurrent();
+            $table->date('registered')->nullable();
+            $table->timestamps();
         });
     }
 
