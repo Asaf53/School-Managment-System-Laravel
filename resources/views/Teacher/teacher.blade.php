@@ -40,7 +40,8 @@
                     <div class="collapse" id="classroom">
                         <a href="{{ route('showClassroom')}}" class="nav_link">Show Classrooms</a>
                         <a href="{{ route('addClassroom')}}" class="nav_link">Add Classrooms</a>
-                        <a href="{{ route('addSubjectClassroom')}}" class="nav_link" title="Add Subjects To Classrooms">Add Subjects To Classrooms</a>
+                        <a href="{{ route('addSubjectClassroom')}}" class="nav_link" >Add Subjects To Classrooms</a>
+                        <a href="{{ route('showSubjectClassroom') }}" class="nav_link">Show Subject Classroom</a>
                     </div>
                     <a data-bs-toggle="collapse" href="#Students" role="button" aria-expanded="false"
                         aria-controls="Students" class="nav_link">
@@ -76,6 +77,13 @@
     </div>
     <!--Container Main start-->
     <div class="bg-white mt-5 p-5">
+        @if ($msg = Session::get('alert'))
+            <div class="alert alert-success alert-dismissible fade show w-100" role="alert">
+                <i class="bx bx-check h5"></i>
+                <strong>{{$msg}}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
         <h4 class="text-center">Show Teacher</h4>
         <div class="d-flex justify-content-center">
             <table class="table table-striped">

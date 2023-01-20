@@ -36,7 +36,8 @@
                         <div class="collapse" id="classroom">
                             <a href="{{ route('showClassroom')}}" class="nav_link">Show Classrooms</a>
                             <a href="{{ route('addClassroom')}}" class="nav_link">Add Classrooms</a>
-                            <a href="{{ route('addSubjectClassroom')}}" class="nav_link" title="Add Subjects To Classrooms">Add Subjects To Classrooms</a>
+                            <a href="{{ route('addSubjectClassroom')}}" class="nav_link">Add Subjects To Classrooms</a>
+                            <a href="{{ route('showSubjectClassroom') }}" class="nav_link">Show Subject Classroom</a>
                         </div>
                         <a data-bs-toggle="collapse" href="#Students" role="button" aria-expanded="false"
                             aria-controls="Students" class="nav_link active">
