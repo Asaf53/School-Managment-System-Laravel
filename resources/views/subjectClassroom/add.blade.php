@@ -31,7 +31,7 @@
                         <span class="nav_name">Dashboard</span>
                     </a>
                     <a data-bs-toggle="collapse" href="#classroom" role="button" aria-expanded="false"
-                        aria-controls="classroom" class="nav_link">
+                        aria-controls="classroom" class="nav_link active">
                         <i class='bx bxs-school nav_icon'></i>
                         <span class="nav_name">Classrooms</span>
                     </a>
@@ -42,7 +42,7 @@
                         <a href="{{ route('showSubjectClassroom') }}" class="nav_link">Show Subject Classroom</a>
                     </div>
                     <a data-bs-toggle="collapse" href="#Students" role="button" aria-expanded="false"
-                        aria-controls="Students" class="nav_link active">
+                        aria-controls="Students" class="nav_link">
                         <i class='bx bxs-graduation nav_icon'></i>
                         <span class="nav_name">Students</span>
                     </a>
@@ -121,10 +121,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <select name="subjectClassroom[]" id="subjectClassroom" class="form-select 
-                        @error('classroom')
-                            is-invalid
-                        @enderror">
+                        <select name="subjectClassroom" id="subjectClassroom" class="form-select">
                         <option selected>Select Class Room</option>
                         @foreach ($classrooms as $classroom)
                             <option value="{{ $classroom->id }}">{{ $classroom->grade }}</option>
@@ -135,11 +132,11 @@
             </table>
             <table class="table table-bordered" id="dynamicAddRemove">
                 <tr>
+                    <th colspan="2">Subject</th>
+                </tr>
+                <tr>
                     <td>
-                    <select name="addMoreInputFields[]" id="subject" class="form-select 
-                        @error('subject')
-                            is-invalid
-                        @enderror">
+                    <select name="addMoreInputFields[0]" id="subject" class="form-select">
                         <option selected>Select Subject Name</option>
                         @foreach ($subjects as $subject)
                             <option value="{{ $subject->id }}">{{ $subject->name }}</option>
@@ -162,8 +159,19 @@
         var i = 0;
         $("#dynamic-ar").click(function () {
             ++i;
-            $("#dynamicAddRemove").append('<tr><td><input type="text" name="addMoreInputFields[' + i +
-                ']" placeholder="Enter subject" class="form-control" /></td><td><button type="button" class="btn btn-outline-danger remove-input-field">Delete</button></td></tr>'
+            $("#dynamicAddRemove").append('<tr>'+
+                '<td>'+
+                    '<select name="addMoreInputFields['+i+']" class=" form-select"'+
+                    '<option value=""></option>'+
+                    '@foreach ($subjects as $subject)'+
+                    '<option value="{{ $subject->id }}">{{ $subject->name }}</option>'+
+                    '@endforeach'+
+                    '</select>'+
+                '</td>'+
+                    '<td>'+
+                        '<button type="button" class="btn btn-outline-danger remove-input-field">Delete</button>'+
+                    '</td>'+
+                '</tr>'
                 );
         });
         $(document).on('click', '.remove-input-field', function () {

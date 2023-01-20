@@ -12,17 +12,9 @@ class SubjectClassroomController extends Controller
 {
     public function index()
     {
-        $classroomSubject = classroom_subject::select(
-            'classrooms.id',
-            'subjects.name',
-            'classrooms.grade',
-        )
-            ->join('classrooms', 'classroom_id', '=', 'classrooms.id')
-            ->join('subjects', 'subject_id', '=', 'subjects.id')
-            // ->where('classrooms.id', $id)
-            ->get();
-
-        return view('subjectClassroom.show', compact('classroomSubject'));
+        $classrooms = Classroom::all();
+        // dd($classrooms);
+        return view('subjectClassroom.show', compact('classrooms'));
     }
     
     public function add()
@@ -42,26 +34,48 @@ class SubjectClassroomController extends Controller
     {
         // $subject = new classroom_subject();
         
-        $subjects_no = $request->input('addMoreInputFields', []);
-        $classroom = $request->input('subjectClassroom[]');
+        // $subjects_no = $request->input('addMoreInputFields', []);
+        // $classroom = $request->input('subjectClassroom');
 
-        foreach ($subjects_no as $key => $value) {
-            $datasave = [
-                'classroom_id' => $classroom,
-                'subject_id' => $value,
+        // $count = count($subjects_no);
+        // $data = [];
+        // for ($i=0; $i < count($subjects_no); $i++) {
+        //     $data[] = [
+        //         'classroom_id' => $classroom,
+        //         'subject_id' => $subjects_no,
+        //     ];
+
+            // $save = implode(',', $data);
+            // $save2 = json_encode($data);
+            // DB::table('classroom_subjects')->insert($save2);
+            // dd($save2);
+        // }
+
+        foreach ($request->addMoreInputFields as $key => $insert) {
+            $saveRecord = [
+                'classroom_id' => $request->subjectClassroom,
+                'subject_id' => $request->addMoreInputFields[$key],
             ];
+
+            DB::table('classroom_subjects')->insert($saveRecord);
         }
 
-        // for ($i=0; $i < count($subjects_no); $i++) { 
-        //     $datasave = [
-        //         'classroom_id' => $classroom,
-        //         'subject_id' => $subjects_no[$i],
-        //     ];
+        return redirect()->route('showSubjectClassroom')->with('alert', 'Subject And Classroom Added Successfully');
+
+        
+        // foreach ($subjects_no as $key => $value) {
+        //     // $subject->classroom_id = $classroom;
+        //     // $subject->subject_id = $subjects_no;
+        //     $subjects_no = $request->input('addMoreInputFields');
+        //     $classroom = $request->input('subjectClassroom');
+        //     dd($classroom, $subjects_no[$key]);
         // }
+        // $subject->save();
+        
 
         // DB::table('classroom_subjects')->insert($datasave);
 
-        dd($datasave);
+        // dd($datasave);
         // $subject->insert($datasave);
         // dd($request->all());
             
@@ -88,5 +102,23 @@ class SubjectClassroomController extends Controller
 
         // return 'success';
         // dd($request->all());
+    }
+
+    // public function edit($id)
+    // {
+    //     $student = Student::find($id);
+    //     $classrooms = Classroom::find($id);
+    //     $subjects = Subject::select(
+    //         'subjects.id',
+    //         'subjects.name',
+    //     )->get();
+    //     dd($classrooms);
+    //     return view('subjectClassroom.edit', compact('classrooms', 'subjects'));
+    // }
+
+    public function delete($id)
+    {
+        Classroom::destroy($id);
+        return redirect()->route('showSubjectClassroom')->with('alert', 'Subject Classroom Deleted Successfully');
     }
 }

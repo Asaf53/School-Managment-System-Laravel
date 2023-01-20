@@ -10,4 +10,9 @@ class Classroom extends Model
     use HasFactory;
 
     public $timestamps = false; 
+
+    public function subjects()
+    {
+        return $this->belongsToMany(Subject::class, 'classroom_subjects');
+    }
 }

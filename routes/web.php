@@ -58,8 +58,7 @@ Route::controller(SubjectClassroomController::class)->prefix('classroomsubject')
     Route::get('index', 'index')->name('showSubjectClassroom');
     Route::get('add', 'add')->name('addSubjectClassroom');
     Route::post('storeSubjectClassroom', 'storeSubjectClassroom')->name('storeSubjectClassroom');
-    Route::get('editSubjectClassroom/{id}', 'editSubjectClassroom')->name('editSubjectClassroom');
-    Route::post('update', 'update')->name('updateSubjectClassroom');
+    Route::get('delete/{id}', 'delete')->name('deleteSubjectClassroom');
 });
 Route::controller(SubjectController::class)->prefix('subject')->middleware('isAdmin')->group(function () {
     Route::get('index', 'index')->name('showSubject');
